@@ -6,6 +6,18 @@
 	<link rel="stylesheet" href="./style/indexStyle.css">
 	<script async src="./jsFiles/indexJs.js"></script>
 	<title>jogging</title>
+	<script src="//d3js.org/d3.v3.min.js?v=3.2.8" charset="utf-8"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" href="layout/styles/layout.css" type="text/css" />
+<script type="text/javascript" src="layout/scripts/jquery.min.js"></script>
+<!-- Superfish Menu -->
+<script type="text/javascript" src="layout/scripts/superfish/jquery.hoverIntent.js"></script>
+<script type="text/javascript" src="layout/scripts/superfish/superfish.js"></script>
+<script type="text/javascript">
+jQuery(function () {
+    jQuery('ul.nav').superfish();
+});
+</script>
 </head>
 <body>
 	<div class="header">
@@ -21,4 +33,20 @@
 	  <div class="s1" id="map">地圖</div>
 	</div>
 	<div class="top10">Top 10</div>
+	<script type="text/javascript" charset="utf-8">
+    d3.text("movie.csv", function(data) {
+        var parsedCSV = d3.csv.parseRows(data);
+        var container = d3.select("body")
+            .append("center")
+            .append("table")
+            .selectAll("tr")
+                .data(parsedCSV).enter()
+                .append("tr")
+            .selectAll("td")
+                .data(function(d) { return d; }).enter()
+                .append("td")
+                .text(function(d) { return d; });
+    });
+</script>
+<p align="center"><a href="movie.csv" target="_blank">download</a></p>
 </body>
